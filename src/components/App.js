@@ -14,8 +14,9 @@ class App extends Component {
         this.props.onCreateNote(note)
     };
 
-    handleNoteDelete = () => {
+    handleNoteDelete = (note) => {
         console.log('delete');
+        this.props.onDeleteNote(note)
     };
 
     render() {

@@ -12,6 +12,9 @@ const mapDispatchToProps = (dispatch) => ({
     },
     onCreateNote: (note) => {
         dispatch(NotesActions.createNote(note));
+    },
+    onDeleteNote: (note) => {
+        dispatch(NotesActions.deleteNote(note._id));
     }
 });
 

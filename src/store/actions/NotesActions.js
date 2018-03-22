@@ -5,6 +5,8 @@ export const LOAD_NOTES_SUCCESS = 'LOAD_NOTES_SUCCESS';
 export const LOAD_NOTES_FAIL = 'LOAD_NOTES_FAIL';
 export const CREATE_NOTES_REQUEST = 'CREATE_NOTES_REQUEST';
 export const CREATE_NOTES_FAIL = 'CREATE_NOTES_FAIL';
+export const DELETE_NOTE_REQUEST = 'DELETE_NOTE_REQUEST';
+export const DELETE_NOTE_FAIL = 'DELETE_NOTE_FAIL';
 
 
 function actionNotesLoaded(data) {
@@ -57,6 +59,29 @@ export function createNote(note) {
     }
 
 }
+
+
+export function deleteNote(noteId) {
+    return (dispatch) => {
+        dispatch({
+            type: DELETE_NOTE_REQUEST,
+            payload: noteId
+        });
+
+        api.deleteNote(noteId)
+            .then(() =>
+                loadNotes()
+            )
+            .catch(err =>
+                dispatch({
+                    type: DELETE_NOTE_FAIL,
+                    payload: err
+                })
+            );
+    }
+
+}
+
 
 // function actionStudentsLoaded(students) {
 //     return {

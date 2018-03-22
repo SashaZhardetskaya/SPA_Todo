@@ -14,7 +14,7 @@ class NotesList extends Component {
                         <Note
                             key={note.id || index}
                             title={note.title}
-                            onDelete={this.props.onNoteDelete.bind(null, note)}
+                            onDelete={() => this.props.onNoteDelete(note)}
                             color={note.color}
                         >
                             {note.text}
