@@ -9,15 +9,6 @@ export const DELETE_NOTE_REQUEST = 'DELETE_NOTE_REQUEST';
 export const DELETE_NOTE_FAIL = 'DELETE_NOTE_FAIL';
 
 
-function actionNotesLoaded(data) {
-    console.log('----data', data);
-    return {
-        type: LOAD_NOTES_SUCCESS,
-        payload: data
-    }
-}
-
-
 export function loadNotes() {
     return (dispatch) => {
         dispatch({
@@ -26,9 +17,10 @@ export function loadNotes() {
 
         api.listNotes()
             .then(({ data }) =>
-                dispatch(
-                    actionNotesLoaded(data)
-                )
+                dispatch({
+                    type: LOAD_NOTES_SUCCESS,
+                    payload: data
+                })
             )
             .catch(err =>
                 dispatch({
@@ -48,7 +40,7 @@ export function createNote(note) {
 
         api.createNote(note)
             .then(() =>
-                loadNotes()
+                dispatch(loadNotes())
             )
             .catch(err =>
                 dispatch({
@@ -70,7 +62,7 @@ export function deleteNote(noteId) {
 
         api.deleteNote(noteId)
             .then(() =>
-                loadNotes()
+                dispatch(loadNotes())
             )
             .catch(err =>
                 dispatch({
@@ -81,38 +73,3 @@ export function deleteNote(noteId) {
     }
 
 }
-
-
-// function actionStudentsLoaded(students) {
-//     return {
-//         type: ACTION_GET_STUDENTS,
-//         payload: students
-//     };
-// }
-//
-// CREATORS
-// export function getStudents() {
-//     return (dispatch, getState) => {
-//         const {core} = getState();
-//
-//         net.aGet('')
-//             .then(data => {
-//                 dispatch(actionStudentsLoaded(data.filter((student) => student.course === core.user.course))); //or any other relevant condition
-//             });
-//     };
-// }
-//
-// export function getStudents() {
-//     return {
-//         type: ACTION_GET_STUDENTS,
-//         payload: students
-//     };
-// }
-//
-// export function getStudentChemistryTestInfo() {
-//     return {
-//         type: ACTION_GET_STUDENT_CHEMISTRY_TESTS_INFO,
-//         payload: chemistryTestScore
-//     };
-// }
-
