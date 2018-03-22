@@ -8,9 +8,10 @@ class App extends Component {
     componentDidMount() {
         this.props.onLoad();
     }
-    
-    handleNoteAdd = () => {
-        console.log('add');
+
+    handleNoteAdd = (note) => {
+        console.log('add', note);
+        this.props.onCreateNote(note)
     };
 
     handleNoteDelete = () => {

@@ -9,6 +9,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
     onLoad: () => {
         dispatch(NotesActions.loadNotes());
+    },
+    onCreateNote: (note) => {
+        dispatch(NotesActions.createNote(note));
     }
 });
 

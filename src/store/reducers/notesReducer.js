@@ -27,6 +27,21 @@ export default (state = defaultState, action) => {
                 error: true,
                 errorText: action.payload,
             };
+
+        case NotesActions.CREATE_NOTES_REQUEST:
+            return {
+                ...state,
+                loading: true,
+                error: false,
+                errorText: '',
+                notes: [
+                    ...state.notes,
+                    action.payload
+                ]
+            };
+
+
+
         default:
             return state;
     }

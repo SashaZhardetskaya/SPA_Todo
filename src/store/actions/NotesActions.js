@@ -3,7 +3,8 @@ import api from '../../api';
 export const LOAD_NOTES_REQUEST = 'LOAD_NOTES_REQUEST';
 export const LOAD_NOTES_SUCCESS = 'LOAD_NOTES_SUCCESS';
 export const LOAD_NOTES_FAIL = 'LOAD_NOTES_FAIL';
-
+export const CREATE_NOTES_REQUEST = 'CREATE_NOTES_REQUEST';
+export const CREATE_NOTES_FAIL = 'CREATE_NOTES_FAIL';
 
 
 function actionNotesLoaded(data) {
@@ -37,13 +38,24 @@ export function loadNotes() {
 }
 
 export function createNote(note) {
-    api.createNote(note)
-        .then(() =>
-            this.loadNotes()
-        )
-        .catch(err =>
-            console.error(err)
-        );
+    return (dispatch) => {
+        dispatch({
+            type: CREATE_NOTES_REQUEST,
+            payload: note
+        });
+
+        api.createNote(note)
+            .then(() =>
+                loadNotes()
+            )
+            .catch(err =>
+                dispatch({
+                    type: CREATE_NOTES_FAIL,
+                    payload: err
+                })
+            );
+    }
+
 }
 
 // function actionStudentsLoaded(students) {
