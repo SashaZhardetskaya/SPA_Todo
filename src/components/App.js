@@ -8,9 +8,7 @@ class App extends Component {
     componentDidMount() {
         this.props.onLoad();
     }
-
-
-
+    
     handleNoteAdd = () => {
         console.log('add');
     };
@@ -20,15 +18,20 @@ class App extends Component {
     };
 
     render() {
+        console.log('this.props', this.props);
+        const {notes} = this.props.notes;
+        console.log('this.notes', notes);
         return (
             <div>
-                WWWWOOOOORRRKKKSSSS!!!
                 <h2>Notes App</h2>
                 <NoteEditor onNoteAdd={this.handleNoteAdd} />
-                {/*<NotesList*/}
-                    {/*notes={this.state.notes}*/}
-                    {/*onNoteDelete={this.handleNoteDelete}*/}
-                {/*/>*/}
+                {
+                    notes &&
+                    <NotesList
+                        notes={notes}
+                        onNoteDelete={this.handleNoteDelete}
+                    />
+                }
             </div>
         );
     }

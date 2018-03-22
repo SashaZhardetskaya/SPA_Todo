@@ -1,22 +1,25 @@
 import api from '../../api';
 
 export const LOAD_NOTES_REQUEST = 'LOAD_NOTES_REQUEST';
+export const LOAD_NOTES_SUCCESS = 'LOAD_NOTES_SUCCESS';
 export const LOAD_NOTES_FAIL = 'LOAD_NOTES_FAIL';
 
 
 
 function actionNotesLoaded(data) {
+    console.log('----data', data);
     return {
-        type: LOAD_NOTES_REQUEST,
-        payload: { data }
+        type: LOAD_NOTES_SUCCESS,
+        payload: data
     }
 }
 
 
 export function loadNotes() {
     return (dispatch) => {
-        // return (dispatch, getState) => {
-        // const {core} = getState();
+        dispatch({
+            type: LOAD_NOTES_REQUEST,
+        });
 
         api.listNotes()
             .then(({ data }) =>

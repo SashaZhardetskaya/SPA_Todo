@@ -4,6 +4,7 @@ import { apiPrefix } from '../../etc/config.json';
 
 export default {
     listNotes() {
+        console.log('---listNotes');
         return axios.get(`${apiPrefix}/notes`);
     },
 

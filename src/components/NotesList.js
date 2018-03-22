@@ -5,6 +5,7 @@ import Note from './Note';
 class NotesList extends Component {
 
     render() {
+        console.log('NotesList', this.props);
         return (
             <div>
                 {
