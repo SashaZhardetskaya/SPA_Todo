@@ -9,9 +9,10 @@ class NotesList extends Component {
         return (
             <div>
                 {
-                    this.props.notes.map(note =>
+                    this.props.notes.map(
+                        (note, index) =>
                         <Note
-                            key={note.id}
+                            key={note.id || index}
                             title={note.title}
                             onDelete={this.props.onNoteDelete.bind(null, note)}
                             color={note.color}
