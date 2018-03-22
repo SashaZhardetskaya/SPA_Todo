@@ -36,6 +36,16 @@ export function loadNotes() {
     }
 }
 
+export function createNote(note) {
+    api.createNote(note)
+        .then(() =>
+            this.loadNotes()
+        )
+        .catch(err =>
+            console.error(err)
+        );
+}
+
 // function actionStudentsLoaded(students) {
 //     return {
 //         type: ACTION_GET_STUDENTS,

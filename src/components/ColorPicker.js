@@ -12,8 +12,8 @@ class ColorPicker extends Component {
                         <div
                             key={color}
                             // className={cx('ColorPicker__swatch', { selected: this.props.value === color })}
-                            style={{ backgroundColor: color }}
-                            onClick={this.props.onChange.bind(null, color)}
+                            style={{ backgroundColor: color, width: '15px', height: '15px' }}
+                            // onClick={this.props.onChange.bind(null, color)}
                         />
                     )
                 }
