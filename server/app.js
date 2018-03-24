@@ -1,5 +1,6 @@
 import express from 'express';
 import bodyParser from 'body-parser';
+import path from 'path';
 
 import { serverPort } from '../etc/config.json';
 
@@ -23,6 +24,12 @@ db.setUpConnection();
 // Using bodyParser middleware
 app.use( bodyParser.json() );
 
+
+app.use(express.static(path.join(__dirname, 'build')));
+
+app.get('/', function (req, res) {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 
 // RESTful api handlers
 
